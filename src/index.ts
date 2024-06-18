@@ -2,6 +2,7 @@ import express, { Application, Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { ApiResponse } from "./utils/api-respose";
+import expressLayouts from "express-ejs-layouts";
 
 dotenv.config();
 
@@ -11,8 +12,15 @@ const port: number = Number(process.env.PORT) ?? 3000;
 app.use(cors());
 app.use(express.json());
 
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+app.use(expressLayouts);
+
 app.get("/", (req: Request, res: Response) => {
-  return ApiResponse.success(res, 200, "Hello World🌍");
+  return res.render("index", {
+    layout: "../views/layouts/main.ejs",
+    title: "Syafiq Fajrian Emha",
+  });
 });
 
 app.use((req: Request, res: Response) => {

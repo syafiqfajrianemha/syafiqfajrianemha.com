@@ -24,3 +24,8 @@ body {
 .socials a {
   font-size: 28px;
 }
+
+#nav-tabContent {
+  text-align: justify;
+  font-size: 1.0rem;
+}
